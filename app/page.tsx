@@ -1,5 +1,11 @@
 'use client'
+
+import { useState } from 'react'
+
 export default function Home() {
+ const [showModal, setShowModal] = useState(false)
+ 
+ 
   return (
     <main>
 
@@ -29,7 +35,7 @@ export default function Home() {
 
         {/* Nav links */}
         <div style={{ display: 'flex', gap: '40px' }}>
-          {['About', 'Services','Contact', 'Portfolio'].map(link => (
+          {['About', 'Services','Portfolio'].map(link => (
             <a key={link} href={`#${link.toLowerCase()}`} style={{
               fontSize: '13px',
               fontWeight: '500',
@@ -41,17 +47,18 @@ export default function Home() {
           ))}
         </div>
 
+        
         {/* CTA Button */}
-        <a href="#contact" style={{
-          border: '1px solid #ffffff',
-          color: '#ffffff',
-          padding: '10px 24px',
-          fontSize: '12px',
-          fontWeight: '600',
-          letterSpacing: '1.5px',
-          textTransform: 'uppercase',
-          textDecoration: 'none',
-        }}>Get a Quote</a>
+<a href="tel:+1443219991" style={{
+  border: '1px solid #ffffff',
+  color: '#ffffff',
+  padding: '10px 24px',
+  fontSize: '12px',
+  fontWeight: '600',
+  letterSpacing: '1.5px',
+  textTransform: 'uppercase',
+  textDecoration: 'none',
+}}>Contact Us</a>
       </nav>
 
       {/* Hero */}
@@ -89,17 +96,17 @@ export default function Home() {
           <p style={{ fontSize: '16px', color: '#999', lineHeight: '1.8', marginBottom: '40px', maxWidth: '440px' }}>
             Premium landscaping services for residential and commercial properties. Quality work, guaranteed results.
           </p>
-          <a href="#contact" style={{
-            display: 'inline-block',
-            border: '1px solid #ffffff',
-            color: '#ffffff',
-            padding: '16px 40px',
-            fontSize: '13px',
-            fontWeight: '600',
-            letterSpacing: '2px',
-            textTransform: 'uppercase',
-            textDecoration: 'none',
-          }}>Get a Free Quote</a>
+          <button onClick={() => setShowModal(true)} style={{
+  backgroundColor: '#000000',
+  color: '#ffffff',
+  border: '1px solid #ffffff',
+  padding: '16px 48px',
+  fontSize: '13px',
+  fontWeight: '600',
+  letterSpacing: '2px',
+  textTransform: 'uppercase',
+  cursor: 'pointer',
+}}>Get a Free Quote</button>
         </div>
       </section>
 {/* Services */}
@@ -249,17 +256,17 @@ export default function Home() {
       <p style={{ fontSize: '15px', color: '#888', lineHeight: '1.9', marginBottom: '40px' }}>
         Aguirre's Landscaping has built a reputation for exceptional service, beautiful results, and dependable professionalism. Our clients trust us to show up, do great work, and treat their property with care.
       </p>
-      <a href="#contact" style={{
-        display: 'inline-block',
-        border: '1px solid #ffffff',
-        color: '#ffffff',
-        padding: '16px 40px',
-        fontSize: '13px',
-        fontWeight: '600',
-        letterSpacing: '2px',
-        textTransform: 'uppercase',
-        textDecoration: 'none',
-      }}>Get a Free Quote</a>
+      <button onClick={() => setShowModal(true)} style={{
+  backgroundColor: '#000000',
+  color: '#ffffff',
+  border: '1px solid #ffffff',
+  padding: '16px 48px',
+  fontSize: '13px',
+  fontWeight: '600',
+  letterSpacing: '2px',
+  textTransform: 'uppercase',
+  cursor: 'pointer',
+}}>Get a Free Quote</button>
     </div>
 
     {/* Right points */}
@@ -290,17 +297,17 @@ export default function Home() {
   <p style={{ fontSize: '15px', color: '#555', marginBottom: '36px' }}>
     Let's design a landscape you'll love year-round.
   </p>
-  <a href="#contact" style={{
-    display: 'inline-block',
-    backgroundColor: '#000000',
-    color: '#ffffff',
-    padding: '16px 48px',
-    fontSize: '13px',
-    fontWeight: '600',
-    letterSpacing: '2px',
-    textTransform: 'uppercase',
-    textDecoration: 'none',
-  }}>Get a Free Quote</a>
+  <button onClick={() => setShowModal(true)} style={{
+  backgroundColor: '#000000',
+  color: '#ffffff',
+  border: '1px solid #ffffff',
+  padding: '16px 48px',
+  fontSize: '13px',
+  fontWeight: '600',
+  letterSpacing: '2px',
+  textTransform: 'uppercase',
+  cursor: 'pointer',
+}}>Get a Free Quote</button>
 </section>
 
 {/* Portfolio */}
@@ -434,6 +441,98 @@ export default function Home() {
   </div>
 </footer>
 
+{/* Quote Modal */}
+{showModal && (
+  <div style={{
+    position: 'fixed',
+    top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.85)',
+    zIndex: 1000,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+  }} onClick={() => setShowModal(false)}>
+    
+    <div style={{
+      backgroundColor: '#111111',
+      border: '1px solid #333',
+      padding: '48px',
+      width: '100%',
+      maxWidth: '600px',
+      maxHeight: '90vh',
+      overflowY: 'auto',
+      position: 'relative',
+    }} onClick={(e) => e.stopPropagation()}>
+      
+      {/* Close button */}
+      <button onClick={() => setShowModal(false)} style={{
+        position: 'absolute',
+        top: '16px',
+        right: '20px',
+        backgroundColor: 'transparent',
+        border: 'none',
+        color: '#ffffff',
+        fontSize: '24px',
+        cursor: 'pointer',
+      }}>✕</button>
+
+      {/* Header */}
+      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '36px', fontWeight: '700', color: '#ffffff', fontStyle: 'italic', marginBottom: '8px' }}>Get a Free Quote</h2>
+        <p style={{ fontSize: '13px', color: '#666' }}>Fill out the form and we'll get back to you within 24 hours.</p>
+      </div>
+
+      {/* Contact info */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '32px', flexWrap: 'wrap' }}>
+        <a href="tel:+1XXXXXXXXXX" style={{ fontSize: '14px', color: '#ffffff', textDecoration: 'none' }}>📞 +1 (440) 321-9991</a>
+        <a href="mailto:luisaguirre92009@gmail.com" style={{ fontSize: '14px', color: '#ffffff', textDecoration: 'none' }}>✉ luisaguirre92009@gmail.com</a>
+      </div>
+
+      {/* Form */}
+      <form action="https://formspree.io/f/xxxxxxxx" method="POST" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+          <input name="name" placeholder="Full Name" required style={{ backgroundColor: '#000', border: '1px solid #333', color: '#fff', padding: '14px 16px', fontSize: '14px', outline: 'none' }} />
+          <input name="phone" placeholder="Phone Number" required style={{ backgroundColor: '#000', border: '1px solid #333', color: '#fff', padding: '14px 16px', fontSize: '14px', outline: 'none' }} />
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+          <input name="email" type="email" placeholder="Email Address" required style={{ backgroundColor: '#000', border: '1px solid #333', color: '#fff', padding: '14px 16px', fontSize: '14px', outline: 'none' }} />
+          <input name="city" placeholder="City / Zip Code" style={{ backgroundColor: '#000', border: '1px solid #333', color: '#fff', padding: '14px 16px', fontSize: '14px', outline: 'none' }} />
+        </div>
+        <select name="service" required defaultValue="" style={{ backgroundColor: '#000', border: '1px solid #333', color: '#888', padding: '14px 16px', fontSize: '14px', outline: 'none' }}>
+          <option value="" disabled>Select a Service</option>
+          <option value="Lawn Maintenance">Lawn Maintenance</option>
+          <option value="Mulching">Mulching</option>
+          <option value="Trimming & Pruning">Trimming & Pruning</option>
+          <option value="Spring & Fall Cleanup">Spring & Fall Cleanup</option>
+          <option value="Hardscaping">Hardscaping</option>
+          <option value="Garden Design">Garden Design</option>
+          <option value="Multiple Services">Multiple Services</option>
+          <option value="Not Sure">Not Sure — Need Advice</option>
+        </select>
+        <textarea name="message" placeholder="Tell us about your property and what you'd like done..." rows={4} required style={{ backgroundColor: '#000', border: '1px solid #333', color: '#fff', padding: '14px 16px', fontSize: '14px', outline: 'none', resize: 'vertical' }} />
+        <button type="submit" style={{ backgroundColor: '#ffffff', color: '#000000', border: 'none', padding: '16px', fontSize: '13px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer' }}>
+          Send Quote Request
+        </button>
+      </form>
+
+    </div>
+  </div>
+)}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </main>
   )
 }
